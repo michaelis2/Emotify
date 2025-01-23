@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF1E6"
+    tools:context=".View.getUserInfo">
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="246dp"
+        android:layout_height="259dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginBottom="552dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.875"
+        app:srcCompat="@drawable/emotifylogo" />
+
+    <Button
+        android:id="@+id/proceedButton"
+        android:layout_width="129dp"
+        android:layout_height="62dp"
+        android:backgroundTint="@color/army"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:text="proceed"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855" />
+
+    <EditText
+        android:id="@+id/enterUsername"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:background="@color/lightblue"
+        android:ems="10"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:hint="         enter username"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/lightbrowwn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <EditText
+        android:id="@+id/enterAge"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:background="@color/lightblue"
+        android:ems="10"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:hint="                enter age"
+        android:includeFontPadding="false"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/lightbrowwn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
+
+    <RadioGroup
+        android:layout_width="170dp"
+        android:layout_height="177dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675">
+
+        <RadioButton
+            android:id="@+id/womanRadiobutton"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kaisei_tokumin_medium"
+            android:text="Woman"
+            android:textColor="@color/lightbrowwn"
+            android:textColorLink="#A8C7D5"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/manRadiobutton"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kaisei_tokumin_medium"
+            android:text="Man"
+            android:textColor="@color/lightbrowwn"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

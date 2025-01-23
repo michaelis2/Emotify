@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524824734831",
+    "project_id": "emotify-188cb",
+    "storage_bucket": "emotify-188cb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524824734831:android:e8518e47e3d28b8d0bb19a",
+        "android_client_info": {
+          "package_name": "com.example.emotify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpCb1PBLRgrSJQU-kiUilsmqhB2PJ-PEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

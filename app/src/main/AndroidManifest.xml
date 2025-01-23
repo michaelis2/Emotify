@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Emotify"
+        tools:targetApi="31">
+        <activity
+            android:name=".View.getUserInfo"
+            android:exported="false" />
+        <activity
+            android:name=".View.GetHelp"
+            android:exported="false" />
+        <activity
+            android:name=".View.trackerHistory"
+            android:exported="false" />
+        <activity
+            android:name=".View.trackerCalendar"
+            android:exported="false" />
+        <activity
+            android:name=".View.trackerMain"
+            android:exported="false" />
+        <activity
+            android:name=".View.journalEntry"
+            android:exported="false" />
+        <activity
+            android:name=".View.journalCalendar"
+            android:exported="false" />
+        <activity
+            android:name=".View.Signup"
+            android:exported="false" />
+        <activity
+            android:name=".View.Login"
+            android:exported="false" />
+        <activity
+            android:name=".View.Opening"
+            android:exported="true">
+    </activity>
+
+        <activity
+            android:name=".View.MainActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter> </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
