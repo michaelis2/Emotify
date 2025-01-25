@@ -80,6 +80,7 @@
 
     <ImageView
         android:id="@+id/imageView25"
+        android:clickable="true"
         android:layout_width="208dp"
         android:layout_height="219dp"
         android:layout_marginEnd="212dp"
@@ -89,6 +90,7 @@
 
     <ImageView
         android:id="@+id/imageView26"
+        android:clickable="true"
         android:layout_width="223dp"
         android:layout_height="230dp"
         android:layout_marginStart="212dp"
@@ -99,6 +101,7 @@
 
     <ImageView
         android:id="@+id/imageView27"
+        android:clickable="true"
         android:layout_width="228dp"
         android:layout_height="233dp"
         android:layout_marginTop="180dp"
