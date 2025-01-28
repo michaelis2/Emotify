@@ -1,11 +1,13 @@
 package com.example.emotify.View
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsAnimation
 import android.widget.Button
 import android.widget.Toast
 import androidx.camera.core.ImageCapture
@@ -19,6 +21,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.emotify.R
 import com.example.emotify.ViewModel.CameraViewModel
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.Response
+import org.json.JSONObject
+import java.io.File
+import java.io.IOException
 import java.nio.ByteBuffer
 
 class Camera : Fragment() {
@@ -46,10 +60,55 @@ class Camera : Fragment() {
 
         // Request camera permission and setup the button listener
         requestCameraPermission()
+       // startRealTimeEmotionDetection()
         view.findViewById<Button>(R.id.image_capture_button).setOnClickListener {
             captureAndUploadImage()
+
+
         }
     }
+   /* private fun startRealTimeEmotionDetection() {
+        val handler = android.os.Handler()
+        val runnable = object : Runnable {
+            override fun run() {
+                imageCapture.takePicture(
+                    ContextCompat.getMainExecutor(requireContext()),
+                    object : ImageCapture.OnImageCapturedCallback() {
+                        override fun onCaptureSuccess(image: ImageProxy) {
+                            val buffer = image.planes[0].buffer
+                            val bytes = bufferToByteArray(buffer)
+                            image.close()
+
+                            // Send the image data to the Flask API
+                            cameraViewModel.sendImageToFlaskAPI(
+                                bytes,
+                                onSuccess = { emotion ->
+                                    // Handle success - emotion contains the predicted emotion from the Flask API
+                                    requireActivity().runOnUiThread {
+                                        Toast.makeText(requireContext(), "Emotion detected: $emotion", Toast.LENGTH_SHORT).show()
+                                    }
+                                },
+                                onFailure = { exception ->
+                                    // Handle failure - exception contains the error that occurred during the API call
+                                    requireActivity().runOnUiThread {
+                                        Toast.makeText(requireContext(), "Emotion detection failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            )
+
+                        }
+
+                        override fun onError(exception: ImageCaptureException) {
+                            Log.e("CameraX", "Image capture failed: ${exception.message}")
+                        }
+                    }
+                )
+                handler.postDelayed(this, 1000) // Capture every second
+            }
+        }
+        handler.post(runnable)
+    }
+*/
 
     private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -93,6 +152,21 @@ class Camera : Fragment() {
                     val buffer = image.planes[0].buffer
                     val bytes = bufferToByteArray(buffer)
 
+                    // Convert ByteArray to File (Temporary File)
+                    //val tempFile = File(requireContext().cacheDir, "capturedimage.jpg")
+                    val timestamp = System.currentTimeMillis()
+                    val tempFile = File(requireContext().cacheDir, "capturedimage_$timestamp.jpg")
+
+                    if (tempFile.exists()) {
+                        tempFile.delete()
+                    }
+
+                    tempFile.writeBytes(bytes)
+
+                    // Send the image to the Flask API
+                    sendImageToFlaskAPI(tempFile)
+
+
                     // Upload the ByteArray directly to Firebase
                     cameraViewModel.uploadImageToDatabase(
                         bytes,
@@ -114,11 +188,64 @@ class Camera : Fragment() {
         )
     }
 
+
     private fun bufferToByteArray(buffer: ByteBuffer): ByteArray {
         val bytes = ByteArray(buffer.remaining())
         buffer.get(bytes)
         return bytes
     }
+    private fun sendImageToFlaskAPI(imageFile: File)
+    {
+        val client = OkHttpClient()
+
+        val mediaType = "image/jpeg".toMediaTypeOrNull()
+        val fileRequestBody = RequestBody.create(mediaType, imageFile)
+        val body = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("file", imageFile.name, fileRequestBody)
+            .build()
+
+        val request = Request.Builder()
+            .url("http://10.0.2.2:5000/predict")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+                requireActivity().runOnUiThread {
+                    Toast.makeText(requireContext(), "Failed to connect to API: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    response.body?.let { responseBody ->
+                        val responseString = responseBody.string()
+
+                        // Parse the JSON response
+                        val json = JSONObject(responseString)
+                        val emotion = json.getString("emotion")
+
+                        println("Detected Emotion: $emotion")
+                        // Navigate to the cameraResult activity with the image path and emotion
+                        val intent = Intent(requireContext(), cameraResult::class.java)
+                        intent.putExtra("imagePath", imageFile.absolutePath)
+                        intent.putExtra("emotion", emotion)
+                        requireActivity().runOnUiThread {
+                            startActivity(intent)
+                        }
+                        // Update UI or perform any necessary actions in your app
+                    }
+                } else {
+                    println("Server returned an error: ${response.code}")
+                }
+            }
+        })
+
+            }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

@@ -6,12 +6,60 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+import java.io.File
+import java.io.IOException
 
 class CameraViewModel : ViewModel() {
 
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseFirestore = FirebaseFirestore.getInstance()
+    private val client = OkHttpClient()
 
+   /* fun sendImageToFlaskAPI(
+        imageData: File,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        try {
+            // Create RequestBody for the image
+            val requestBody = imageData.toRequestBody("image/jpeg".toMediaTypeOrNull())
+            val multipartBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("image", "image.jpg", requestBody)
+                .build()
+
+            // Build the POST request
+            val request = Request.Builder()
+                .url("http://10.0.2.2:5000/predict")
+                // Replace with your Flask server URL
+                .post(multipartBody)
+                .build()
+
+            // Execute the request asynchronously
+            client.newCall(request).enqueue(object : okhttp3.Callback {
+                override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    response.body?.let { responseBody ->
+                        val jsonResponse = JSONObject(responseBody.string())
+                        val emotion = jsonResponse.getString("emotion")
+                        onSuccess(emotion)
+                    } ?: onFailure(Exception("Empty response body"))
+                }
+
+                override fun onFailure(call: okhttp3.Call, e: IOException) {
+                    onFailure(e)
+                }
+            })
+        } catch (e: Exception) {
+            onFailure(e)
+        }
+    }
+*/
     fun uploadImageToDatabase(
         imageData: ByteArray,
         onSuccess: () -> Unit,

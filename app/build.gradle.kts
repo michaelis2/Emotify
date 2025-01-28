@@ -71,4 +71,11 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.8.5")
     implementation (libs.lifecycle.viewmodel.ktx)
 
+    implementation(libs.moshi)
+
+    implementation (libs.okhttp)
+
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    implementation (libs.glide)
+
 }
