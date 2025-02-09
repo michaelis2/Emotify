@@ -167,7 +167,7 @@ class Camera : Fragment() {
                     sendImageToFlaskAPI(tempFile)
 
 
-                    // Upload the ByteArray directly to Firebase
+                    /* Upload the ByteArray directly to Firebase
                     cameraViewModel.uploadImageToDatabase(
                         bytes,
                         onSuccess = {
@@ -177,7 +177,7 @@ class Camera : Fragment() {
                             Toast.makeText(requireContext(), "Upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
                         }
                     )
-
+*/
                     image.close()
                 }
 

@@ -37,6 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
@@ -78,4 +79,9 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation (libs.glide)
 
+   // implementation (libs.mpandroidchart)
+   // implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
+

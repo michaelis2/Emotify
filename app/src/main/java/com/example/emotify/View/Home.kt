@@ -12,6 +12,7 @@ import com.example.emotify.R
 class Home : Fragment() {
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -34,7 +35,11 @@ class Home : Fragment() {
             val intent = Intent(activity, GetHelp::class.java) // Navigating to Settings activity
             startActivity(intent)
         }
-
+        val button4: View = rootView.findViewById(R.id.button4)
+        button4.setOnClickListener {
+            val intent = Intent(activity, trackerHistory::class.java)
+            startActivity(intent)
+        }
         return rootView
     }
 }

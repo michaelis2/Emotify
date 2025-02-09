@@ -19,6 +19,7 @@ constraintlayout = "2.2.0"
 moshi = "1.15.0"
 okhttp = "4.10.0"
 
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }

@@ -38,7 +38,7 @@ class Signup : AppCompatActivity() {
         signupViewModel.signupResult.observe(this) { result ->
             Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
             if (result == "Signup successful") {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, getUserInfo::class.java)
                     startActivity(intent)
                     finish()
 
