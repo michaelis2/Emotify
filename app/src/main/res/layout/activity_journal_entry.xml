@@ -39,7 +39,7 @@
             app:srcCompat="@drawable/journal" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/journalEntry"
             android:layout_width="383dp"
             android:layout_height="703dp"
             android:background="@color/lightblue"
@@ -53,7 +53,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/journalDate"
             android:layout_width="203dp"
             android:layout_height="50dp"
             android:layout_marginTop="164dp"
@@ -65,6 +65,16 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

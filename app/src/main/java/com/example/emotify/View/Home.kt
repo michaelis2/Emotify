@@ -32,7 +32,7 @@ class Home : Fragment() {
         }
         val imageView27: View = rootView.findViewById(R.id.imageView27)
         imageView27.setOnClickListener {
-            val intent = Intent(activity, GetHelp::class.java) // Navigating to Settings activity
+            val intent = Intent(activity, ChatBot::class.java) // Navigating to Settings activity
             startActivity(intent)
         }
         val button4: View = rootView.findViewById(R.id.button4)
