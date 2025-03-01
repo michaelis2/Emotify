@@ -12,8 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.emotify.R
 import com.example.emotify.ViewModel.CameraViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class cameraResult : AppCompatActivity() {
     private val cameraViewModel: CameraViewModel by viewModels()
@@ -57,9 +62,37 @@ class cameraResult : AppCompatActivity() {
 
     private fun uploadImage(imageFile: File, emotion: String?) {
         val fileUri = Uri.fromFile(imageFile)
-        cameraViewModel.saveImageDataToFirestore(fileUri, imageFile.name, emotion ?: "Unknown")
-        Toast.makeText(this, "Uploading image...", Toast.LENGTH_SHORT).show()
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return // Get current user ID
+        val firestore = FirebaseFirestore.getInstance()
+
+        // Reference the user's images collection
+        val userImagesRef = firestore.collection("images").document(userId).collection("userImages")
+
+        // Check if an image already exists for this date
+        userImagesRef.get()
+            .addOnSuccessListener { documents ->
+                val existingImage = documents.documents.find {
+                    val timestamp = it.getLong("timestamp") ?: 0L
+                    val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(timestamp))
+                    date == currentDate
+                }
+
+                if (existingImage != null) {
+                    Toast.makeText(this, "You already saved an image for today!", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Save the image and emotion to Firestore
+                    cameraViewModel.saveImageDataToFirestore(fileUri, imageFile.name, emotion ?: "Unknown")
+                    Toast.makeText(this, "Uploading image...", Toast.LENGTH_SHORT).show()
+                    navigateToTrackerCalendar()
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error checking existing images", e)
+                Toast.makeText(this, "Error checking existing images", Toast.LENGTH_SHORT).show()
+            }
     }
+
 
     private fun navigateToTrackerCalendar() {
         // Create an Intent to navigate to TrackerCalendar activity

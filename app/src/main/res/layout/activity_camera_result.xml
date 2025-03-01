@@ -5,33 +5,44 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF1E6"
     tools:context=".View.cameraResult">
 
     <TextView
         android:id="@+id/emotion_result"
         android:layout_width="151dp"
         android:layout_height="66dp"
+        android:fontFamily="@font/kaisei_tokumin_medium"
         android:text="TextView"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.793" />
+        app:layout_constraintVertical_bias="0.772" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="93dp"
-        android:layout_height="117dp"
+        android:layout_width="312dp"
+        android:layout_height="382dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.249"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/saveImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_width="137dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/army"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:text="s a v e"
+        android:textColor="@color/white"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

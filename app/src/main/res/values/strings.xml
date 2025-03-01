@@ -1,5 +1,26 @@
 <resources>
     <string name="app_name">Emotify</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Malaysia -->
+    <string name="hotline_my">Emergency - 999</string>
+    <string name="emotional_support_my">BeFrienders KL - 0376272929</string>
+    <string name="women_support_my">TINA - 0330008858</string>
+    <string name="narcotics_support_my">Narcotics Anonymous - 01115114022</string>
+
+    <!-- UK -->
+    <string name="hotline_uk">Emergency - 999</string>
+    <string name="emotional_support_uk">Samaritans - 116 123</string>
+    <string name="women_support_uk">Refuge - 0808 2000 247</string>
+    <string name="narcotics_support_uk">FRANK - 0300 123 6600</string>
+
+    <!-- US -->
+    <string name="hotline_us">Emergency - 911</string>
+    <string name="emotional_support_us">Crisis Hotline - 988</string>
+    <string name="women_support_us">National DV Hotline - 800-799-7233</string>
+    <string name="narcotics_support_us">SAMHSA - 800-662-4357</string>
+
+    <!-- Default -->
+    <string name="hotline_default">Emergency - 000</string>
+    <string name="emotional_support_default">General Helpline - 123456789</string>
+    <string name="women_support_default">Womens Helpline - 123456789</string>
+    <string name="narcotics_support_default">Drug Helpline - 123456789</string>
 </resources>

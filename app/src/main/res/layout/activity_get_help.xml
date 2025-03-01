@@ -9,17 +9,17 @@
     tools:context=".View.GetHelp">
 
     <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="246dp"
-        android:layout_height="259dp"
+        android:id="@+id/imageView16"
+        android:layout_width="160dp"
+        android:layout_height="187dp"
         android:layout_marginEnd="256dp"
         android:layout_marginBottom="552dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/emotifylogo" />
 
     <ImageView
@@ -57,7 +57,26 @@
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.515"
         app:srcCompat="@drawable/info" />
+
+    <TextView
+        android:id="@+id/narcoticssupporthotline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Narcotics Anonymous -  01115114022"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:textColor="@color/army"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:autoLink="phone"
+        android:linksClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.514" />
 
     <ImageView
         android:id="@+id/imageView22"
@@ -69,7 +88,7 @@
         app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673"
+        app:layout_constraintVertical_bias="0.697"
         app:srcCompat="@drawable/info" />
 
     <ImageView
@@ -79,9 +98,63 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826"
+        app:layout_constraintVertical_bias="0.871"
         app:srcCompat="@drawable/info" />
+
+    <TextView
+        android:id="@+id/emotionalsupporthotline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BeFrienders KL - 0376272929"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:textColor="@color/army"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:autoLink="phone"
+        android:linksClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351" />
+
+    <TextView
+        android:id="@+id/womenssupporthotline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TINA - 0330008858"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:textColor="@color/army"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:autoLink="phone"
+        android:linksClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
+
+    <TextView
+        android:id="@+id/ambulance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency - 999"
+        android:fontFamily="@font/kaisei_tokumin_medium"
+        android:textColor="@color/army"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:autoLink="phone"
+        android:linksClickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.844" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.emotify.R
+import com.example.emotify.ViewModel.MainViewModel
 
 
 class Home : Fragment() {
-
+    private val viewModel: MainViewModel by activityViewModels()
     override fun onCreateView(
 
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,12 +34,14 @@ class Home : Fragment() {
         }
         val imageView27: View = rootView.findViewById(R.id.imageView27)
         imageView27.setOnClickListener {
-            val intent = Intent(activity, ChatBot::class.java) // Navigating to Settings activity
+            val countryCode = viewModel.countryCode.value // Get the current value
+            val intent = Intent(activity, GetHelp::class.java)
+            intent.putExtra("COUNTRY_CODE", countryCode)
             startActivity(intent)
         }
-        val button4: View = rootView.findViewById(R.id.button4)
-        button4.setOnClickListener {
-            val intent = Intent(activity, trackerHistory::class.java)
+        val imageButton: View = rootView.findViewById(R.id.imageButton)
+        imageButton.setOnClickListener {
+            val intent = Intent(activity, trackerCalendar::class.java)
             startActivity(intent)
         }
         return rootView

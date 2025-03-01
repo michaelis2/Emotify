@@ -47,9 +47,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.play.services.location)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
 
 
 
@@ -88,6 +88,23 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
     implementation (libs.okhttp.v492)
+    implementation (libs.play.services.auth)
+    implementation ("com.google.android.gms:play-services-auth:21.3.0")
+
+    testImplementation (libs.junit)
+    testImplementation (libs.mockito.core.v570)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation (libs.kotlinx.coroutines.test.v164)
+    testImplementation (libs.androidx.core)
+    testImplementation (libs.robolectric)
+
+
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+    androidTestImplementation ("androidx.test:rules:1.5.0")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("org.mockito:mockito-android:5.2.0")
+
 
 }
 

@@ -69,8 +69,8 @@ class trackerCalendar : AppCompatActivity() {
                         break // Display only the first result
                     }
                 } else {
-                    moodTextView.text = "No data for this date"
-                    imageView.setImageResource(R.drawable.tracker) // Default image
+                    moodTextView.text = " "
+                    imageView.setImageResource(R.drawable.nomood) // Default image
                 }
             }
             .addOnFailureListener {

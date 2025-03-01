@@ -3,6 +3,7 @@ package com.example.emotify.View
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.emotify.R
@@ -15,6 +16,7 @@ class journalEntry : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var journalEntry: EditText
     private lateinit var saveButton: Button
+    private lateinit var journalDate: TextView
     private var selectedDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +25,14 @@ class journalEntry : AppCompatActivity() {
 
         journalEntry = findViewById(R.id.journalEntry)
         saveButton = findViewById(R.id.saveButton)
+        journalDate = findViewById(R.id.journalDate)
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
         selectedDate = intent.getStringExtra("selectedDate")
 
         if (selectedDate != null) {
+            journalDate.text = selectedDate
             fetchJournalEntry(selectedDate!!)
         }
 
