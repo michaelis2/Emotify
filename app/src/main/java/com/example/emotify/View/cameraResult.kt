@@ -14,11 +14,15 @@ import com.example.emotify.R
 import com.example.emotify.ViewModel.CameraViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+
+/**
+ * Activity class responsible for displaying the captured image and detected emotion.
+ * Provides an option to upload the image and emotion data to Firebase Firestore.
+ */
 
 class cameraResult : AppCompatActivity() {
     private val cameraViewModel: CameraViewModel by viewModels()
@@ -28,9 +32,11 @@ class cameraResult : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_result)
 
+        // Initialize UI components
         val imageView = findViewById<ImageView>(R.id.imageView3)
         val textView = findViewById<TextView>(R.id.emotion_result)
         val uploadButton = findViewById<TextView>(R.id.saveImage)
+
         // Get the passed data
         val imagePath = intent.getStringExtra("imagePath")
         val emotion = intent.getStringExtra("emotion")
@@ -38,6 +44,7 @@ class cameraResult : AppCompatActivity() {
         Log.d("CameraResult", "Image path: $imagePath")
         Log.d("CameraResult", "Emotion: $emotion")
 
+        // Load image into ImageView using Glide
         Glide.with(this).clear(imageView)
         // Load image into ImageView using Glide
         if (imagePath != null) {
@@ -59,8 +66,10 @@ class cameraResult : AppCompatActivity() {
         }
     }
 
-
-    private fun uploadImage(imageFile: File, emotion: String?) {
+    /**
+     * Uploads the captured image to Firestore, ensuring only one upload per day.
+     */
+   private fun uploadImage(imageFile: File, emotion: String?) {
         val fileUri = Uri.fromFile(imageFile)
         val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return // Get current user ID
@@ -94,12 +103,15 @@ class cameraResult : AppCompatActivity() {
     }
 
 
+    /**
+     * Navigates to the TrackerCalendar activity after uploading the image.
+     */
     private fun navigateToTrackerCalendar() {
         // Create an Intent to navigate to TrackerCalendar activity
         val intent = Intent(this, trackerCalendar::class.java)
 
         // Start the TrackerCalendar activity
         startActivity(intent)
-        finish()  // Close this activity if needed
+        finish()  // Close the activity
     }
 }

@@ -7,18 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.emotify.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * Settings Fragment displays user profile details (username, age, gender)
+ * and provides an option to navigate to the calorie tracker history.
+ */
+
 class Settings : Fragment() {
 
+    // UI Components
     private lateinit var usernameTextView: TextView
     private lateinit var ageTextView: TextView
     private lateinit var genderTextView: TextView
     private lateinit var trackerCalButton: Button
+
+    // Firebase instances for authentication and Firestore database access
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
@@ -44,6 +51,10 @@ class Settings : Fragment() {
         return view
     }
 
+    /**
+     * Fetches user data from Firestore and updates the TextViews with the retrieved information.
+     * It retrieves the username, age, and gender of the logged-in user.
+     */
     private fun loadUserData() {
         val userId = auth.currentUser?.uid
 

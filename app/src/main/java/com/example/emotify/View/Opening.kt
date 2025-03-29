@@ -1,6 +1,5 @@
 package com.example.emotify.View
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.emotify.R
+
+/**
+ * Opening Activity serves as the first screen users see when they launch the app.
+ * It provides a "Get Started" button to navigate to the Signup screen.
+ */
 
 class Opening : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +24,7 @@ class Opening : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         // Set up button click listener to open Signup activity
         val getStartedButton: Button = findViewById(R.id.GetStartedButton)
         getStartedButton.setOnClickListener {

@@ -11,7 +11,14 @@ import com.example.emotify.R
 import androidx.activity.viewModels
 import com.example.emotify.ViewModel.TrackerViewModel
 
+/**
+ * The TrackerMain activity allows users to log their emotions by selecting an emotion button.
+ * Upon selection, the user's emotion is recorded, and they are navigated to TrackerCalendar.
+ */
+
 class trackerMain : AppCompatActivity() {
+
+    // ViewModel instance for managing emotion tracking
     private val trackerViewModel: TrackerViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +31,7 @@ class trackerMain : AppCompatActivity() {
             insets
         }
 
-
+         // Initialize emotion buttons
         val happyButton = findViewById<ImageButton>(R.id.happyButton)
         val sadButton = findViewById<ImageButton>(R.id.sadButton)
         val neutralButton = findViewById<ImageButton>(R.id.neutralButton)
@@ -32,14 +39,6 @@ class trackerMain : AppCompatActivity() {
         val scaredButton = findViewById<ImageButton>(R.id.scaredButton)
         val surprisedButton = findViewById<ImageButton>(R.id.surprisedButton)
 
-
-        // Function to handle emotion click and navigate to trackerCalendar
-        fun onEmotionClicked(emotion: String) {
-            trackerViewModel.logEmotion(emotion)
-            val intent = Intent(this, trackerCalendar::class.java)
-            intent.putExtra("emotion", emotion) // Pass the selected emotion
-            startActivity(intent)
-        }
 
         // Setting up click listeners for emotion buttons
         happyButton.setOnClickListener {
@@ -67,6 +66,11 @@ class trackerMain : AppCompatActivity() {
             navigateToTrackerCalendar("Surprised")
         }
     }
+
+    /**
+     * Navigates to the TrackerCalendar activity while passing the selected emotion.
+     * @param emotion The emotion selected by the user.
+     */
     private fun navigateToTrackerCalendar(emotion: String) {
         val intent = Intent(this, trackerCalendar::class.java)
         intent.putExtra("emotion", emotion)  // Pass emotion data to trackerCalendar

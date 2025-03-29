@@ -91,19 +91,22 @@ dependencies {
     implementation (libs.play.services.auth)
     implementation ("com.google.android.gms:play-services-auth:21.3.0")
 
-    testImplementation (libs.junit)
-    testImplementation (libs.mockito.core.v570)
-    testImplementation (libs.mockito.kotlin)
-    testImplementation (libs.kotlinx.coroutines.test.v164)
-    testImplementation (libs.androidx.core)
-    testImplementation (libs.robolectric)
 
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("org.mockito:mockito-core:4.11.0")
+    testImplementation ("org.mockito:mockito-inline:4.11.0")
 
-    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation ("androidx.test:runner:1.5.2")
-    androidTestImplementation ("androidx.test:rules:1.5.0")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation ("org.mockito:mockito-android:5.2.0")
+    testImplementation ("io.mockk:mockk:1.13.5")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation ("org.slf4j:slf4j-simple:2.0.7")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("io.mockk:mockk-android:1.12.0")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
 
 
 }

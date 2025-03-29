@@ -25,6 +25,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import java.util.Locale
 
+/**
+ * MainActivity serves as the entry point for the application.
+ * It includes navigation between fragments and handles location permissions
+ * to determine the user's country code.
+ */
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -33,9 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Use view binding
+
+        // Use View Binding for easier access to UI elements
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize location services
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         if (savedInstanceState == null) {
@@ -62,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         }
         requestLocationPermission()
     }
+
+    /**
+     * Requests location permission from the user.
+     * If granted, retrieves the user's country code.
+     */
     private fun requestLocationPermission() {
         val locationPermissionRequest = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
@@ -80,7 +94,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ✅ Get user's country code using location
+    /**
+     * Retrieves the user's country code based on their location.
+     * If last known location is unavailable, it requests a new location update.
+     */
     private fun getUserCountryCode() {
         Log.d("MainActivity", "getUserCountryCode() called")
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -94,7 +111,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ✅ Fetch country code using the Geocoder API
+    /**
+     * Fetches the country code using Geocoder based on the given latitude and longitude.
+     *
+     * @param latitude The latitude of the user's location.
+     * @param longitude The longitude of the user's location.
+     */
     private fun fetchCountryCode(latitude: Double, longitude: Double) {
         val geocoder = Geocoder(this, Locale.getDefault())
 
@@ -123,7 +145,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ✅ Request fresh location update if lastLocation is null
+    /**
+     * Requests a new location update if the last known location is null.
+     */
     private fun requestNewLocation() {
         Log.d("MainActivity", "requestnewloc() called")
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000).build()
@@ -132,7 +156,7 @@ class MainActivity : AppCompatActivity() {
                 for (location in locationResult.locations) {
                     fetchCountryCode(location.latitude, location.longitude)
                 }
-                fusedLocationClient.removeLocationUpdates(this) // Stop updates once we get a location
+                fusedLocationClient.removeLocationUpdates(this) // Stop updates once location gotten
             }
         }
 
@@ -141,13 +165,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Function to replace the fragment
+    /**
+     * Replaces the current fragment with the specified fragment.
+     *
+     * @param fragment The fragment to be displayed.
+     */
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)
             .commit()
     }
-    // Request location permission
 
 
 }

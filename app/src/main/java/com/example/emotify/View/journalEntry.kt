@@ -10,10 +10,18 @@ import com.example.emotify.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * Activity for writing, saving, and retrieving journal entries.
+ * Users can select a date, view previous entries, and save new ones.
+ */
+
 class journalEntry : AppCompatActivity() {
 
+    // Firebase instances for authentication and Firestore database
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+
+    // UI elements
     private lateinit var journalEntry: EditText
     private lateinit var saveButton: Button
     private lateinit var journalDate: TextView
@@ -29,18 +37,22 @@ class journalEntry : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
+        // Retrieve the selected date from intent
         selectedDate = intent.getStringExtra("selectedDate")
 
         if (selectedDate != null) {
             journalDate.text = selectedDate
             fetchJournalEntry(selectedDate!!)
         }
-
+        // Set up click listener for saving or updating journal entry
         saveButton.setOnClickListener {
             saveOrUpdateJournalEntry()
         }
     }
 
+    /**
+     * Fetches the journal entry from Firestore for the given date.
+     */
     private fun fetchJournalEntry(date: String) {
         val userId = auth.currentUser?.uid ?: return
         val docRef = db.collection("userEntry").document(userId).collection("entries").document(date)
@@ -56,6 +68,9 @@ class journalEntry : AppCompatActivity() {
         }
     }
 
+    /**
+     * Saves or updates the journal entry in Firestore.
+     */
     private fun saveOrUpdateJournalEntry() {
         val userId = auth.currentUser?.uid ?: return
         val entryText = journalEntry.text.toString()

@@ -1,4 +1,4 @@
-package com.example.emotify.View
+/*package com.example.emotify.View
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -75,3 +75,4 @@ class ChatBot : AppCompatActivity() {
 
 }
 
+*/

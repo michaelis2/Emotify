@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.emotify.Model.SignupRepository
 
+/**
+ * ViewModel responsible for handling user signup functionality.
+ */
 class SignupViewModel : ViewModel() {
 
     private val repository = SignupRepository()
@@ -12,6 +15,13 @@ class SignupViewModel : ViewModel() {
     private val _signupResult = MutableLiveData<String>()
     val signupResult: LiveData<String> get() = _signupResult
 
+    /**
+     * Handles user signup by validating input and calling the repository function.
+     *
+     * @param email The user's email address.
+     * @param password The chosen password.
+     * @param confirmPassword The confirmation of the chosen password.
+     */
     fun signup(email: String, password: String, confirmPassword: String) {
         if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
             _signupResult.value = "Fields cannot be empty"

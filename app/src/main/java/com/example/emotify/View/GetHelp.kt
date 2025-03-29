@@ -9,22 +9,29 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.emotify.R
 import android.util.Log
 
+/**
+ * Activity class for displaying emergency and support hotlines based on the user's country.
+ */
+
 class GetHelp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_get_help)
 
+        // Retrieve the country code from the intent (default to "MY" if not provided)
         val countryCode = intent.getStringExtra("COUNTRY_CODE") ?: "MY"
 
         Log.d("CountryCode", "Retrieved country code: $countryCode")
-        // Get references to the TextViews
+
+
+        // Initialize TextViews
         val emergencyTextView = findViewById<TextView>(R.id.ambulance)
         val emotionalSupportTextView = findViewById<TextView>(R.id.emotionalsupporthotline)
         val womenSupportTextView = findViewById<TextView>(R.id.womenssupporthotline)
         val narcoticsSupportTextView = findViewById<TextView>(R.id.narcoticssupporthotline)
 
-        // Determine the correct hotlines
+        // Retrieve numbers based on country code
         val hotlineNumber = when (countryCode) {
             "MY" -> getString(R.string.hotline_my)
             "UK" -> getString(R.string.hotline_uk)

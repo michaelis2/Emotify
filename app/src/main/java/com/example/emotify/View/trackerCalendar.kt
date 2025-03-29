@@ -6,16 +6,18 @@ import android.util.Base64
 import android.widget.CalendarView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.emotify.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+
+/**
+ * The `trackerCalendar` activity allows users to view their recorded emotions
+ * and images based on selected calendar dates.
+ */
 
 class trackerCalendar : AppCompatActivity() {
 
@@ -30,6 +32,7 @@ class trackerCalendar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracker_calendar)
 
+        // Initialize UI components
         calendarView = findViewById(R.id.calendarView2)
         moodTextView = findViewById(R.id.moodTextview)
         imageView = findViewById(R.id.imageView13)
@@ -41,10 +44,16 @@ class trackerCalendar : AppCompatActivity() {
         }
     }
 
+    /**
+     * Formats the selected date into a `YYYY-MM-DD` string format.
+     */
     private fun formatDate(year: Int, month: Int, day: Int): String {
-        // Convert selected date to YYYY-MM-DD format (or adjust to match Firestore storage format)
         return String.format("%04d-%02d-%02d", year, month + 1, day)
     }
+
+    /**
+     * Fetches the image and emotion data from Firestore for the selected date.
+     */
     private fun fetchImageAndEmotion(date: String) {
         val userId = firebaseAuth.currentUser?.uid ?: return
 
@@ -78,6 +87,9 @@ class trackerCalendar : AppCompatActivity() {
             }
     }
 
+    /**
+     * Decodes a Base64-encoded string and displays the image in the `ImageView`.
+     */
     private fun displayImage(base64String: String) {
         try {
             val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
@@ -89,6 +101,9 @@ class trackerCalendar : AppCompatActivity() {
         }
     }
 
+    /**
+     * Returns the timestamp for the start of the given date (00:00:00).
+     */
     private fun getStartOfDayTimestamp(date: String): Long {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val calendar = Calendar.getInstance().apply {
@@ -101,6 +116,9 @@ class trackerCalendar : AppCompatActivity() {
         return calendar.timeInMillis
     }
 
+    /**
+     * Returns the timestamp for the end of the given date (23:59:59).
+     */
     private fun getEndOfDayTimestamp(date: String): Long {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val calendar = Calendar.getInstance().apply {
@@ -112,6 +130,10 @@ class trackerCalendar : AppCompatActivity() {
         }
         return calendar.timeInMillis
     }
+
+    /**
+     * Returns the corresponding emoji for a given emotion.
+     */
     private fun getEmojiForEmotion(emotion: String): String {
         return when (emotion) {
             "Happy" -> "😊"

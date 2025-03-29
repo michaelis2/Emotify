@@ -7,16 +7,17 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModel
 import com.example.emotify.R
 import com.example.emotify.ViewModel.UserViewModel
 
+/**
+ * Activity for collecting and saving user information (username, age, gender).
+ */
+
 class getUserInfo : AppCompatActivity() {
+
     private lateinit var usernameEditText: EditText
     private lateinit var ageEditText: EditText
     private lateinit var genderRadioGroup: RadioGroup
@@ -28,6 +29,7 @@ class getUserInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_user_info)
 
+        // Initialize UI elements
         usernameEditText = findViewById(R.id.enterUsername)
         ageEditText = findViewById(R.id.enterAge)
         genderRadioGroup = findViewById(R.id.genderRadioGroup)
@@ -36,15 +38,17 @@ class getUserInfo : AppCompatActivity() {
 
         val proceedButton: Button = findViewById(R.id.proceedButton)
         proceedButton.setOnClickListener {
-            saveUserData()
+            saveUserData() // Calls the function to validate and save user input
         }
     }
 
     private fun saveUserData() {
+
+        // Retrieve input values from text fields
         val username = usernameEditText.text.toString().trim()
         val age = ageEditText.text.toString().toIntOrNull()
 
-        // Ensure a gender is selected
+        // Get the selected gender from the radio buttons
         val gender = when (genderRadioGroup.checkedRadioButtonId) {
             R.id.womanRadiobutton -> "Woman"
             R.id.manRadiobutton -> "Man"
