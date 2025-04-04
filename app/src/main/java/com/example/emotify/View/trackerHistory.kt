@@ -62,9 +62,11 @@ class trackerHistory : AppCompatActivity() {
                 return when (value.toInt()) {
                     1 -> "😡"
                     2 -> "😢"
-                    3 -> "😐"
+                    7 -> "😐"
+                    3 -> "😱"
                     4 -> "😲"
                     5 -> "😊"
+                    6 -> "🤢"
                     else -> "❓"
                 }
             }
@@ -105,7 +107,8 @@ class trackerHistory : AppCompatActivity() {
                         "😡" -> 1
                         "😱" -> 3
                         "😲" -> 4
-                        "😐" -> 3
+                        "😐" -> 7
+                        "🤢" -> 6
                         else -> 0
                     }
                     entries.add(Entry(timestamp.toFloat(), emotionValue.toFloat()))  // Use raw timestamp for the x-axis
@@ -138,7 +141,9 @@ class trackerHistory : AppCompatActivity() {
             "angry" -> 1
             "fear" -> 3
             "surprise" -> 4
-            "neutral" -> 3
+            "neutral" -> 7
+            "disgust" -> 6
+
             else -> 0
         }
     }
@@ -156,6 +161,7 @@ class trackerHistory : AppCompatActivity() {
             "fear" -> "😱"
             "surprise" -> "😲"
             "neutral" -> "😐"
+            "disgust" -> "🤢"
             else -> "❓"
         }
     }

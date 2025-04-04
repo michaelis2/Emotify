@@ -50,7 +50,7 @@
 
     <TextView
         android:id="@+id/usernameTextview"
-        android:layout_width="129dp"
+        android:layout_width="194dp"
         android:layout_height="35dp"
         android:fontFamily="@font/kaisei_tokumin_medium"
         android:text="username"
