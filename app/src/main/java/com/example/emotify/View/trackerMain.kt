@@ -38,6 +38,7 @@ class trackerMain : AppCompatActivity() {
         val angryButton = findViewById<ImageButton>(R.id.angryButton)
         val scaredButton = findViewById<ImageButton>(R.id.scaredButton)
         val surprisedButton = findViewById<ImageButton>(R.id.surprisedButton)
+        val disgustButton = findViewById<ImageButton>(R.id.disgustButton)
 
 
         // Setting up click listeners for emotion buttons
@@ -58,12 +59,16 @@ class trackerMain : AppCompatActivity() {
             navigateToTrackerCalendar("Angry")
         }
         scaredButton.setOnClickListener {
-            trackerViewModel.logEmotion("Scared")
-            navigateToTrackerCalendar("Scared")
+            trackerViewModel.logEmotion("Fear")
+            navigateToTrackerCalendar("Fear")
         }
         surprisedButton.setOnClickListener {
             trackerViewModel.logEmotion("Surprised")
             navigateToTrackerCalendar("Surprised")
+        }
+        disgustButton.setOnClickListener {
+            trackerViewModel.logEmotion("Disgust")
+            navigateToTrackerCalendar("Disgust")
         }
     }
 

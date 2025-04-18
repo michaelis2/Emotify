@@ -141,7 +141,7 @@ class trackerCalendar : AppCompatActivity() {
             "Neutral" -> "😐"
             "Angry" -> "😡"
             "Fear" -> "😨"
-            "Surprised" -> "😲"
+            "Surprise" -> "😲"
             "Disgust" -> "🤢"
             else -> "❓" // Default emoji for unknown emotions
         }
