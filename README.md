@@ -76,6 +76,8 @@ haarcascade_frontalface_default.xml — Face detection file from OpenCV.
 
 STEP 1) Run the flask server
 
+- Open terminal in the Emotify directory and type in the following:
+  
  ### ` python3 fyp1.py --host=0.0.0.0 --port=5000 ` (for Macbook)
 
 Step 2) Run the app in Android Studio
