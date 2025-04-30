@@ -11,7 +11,7 @@ With a smart Convolutional Neural Network (CNN) for facial emotion detection, Em
 🆘 Access mental health resources
 All wrapped in a user-friendly and intuitive interface 💗
 
-## FEATURES 
+## 🌟 FEATURES 
 
 - User Authentication
 Users can sign up, log in, and manage their accounts.
@@ -34,7 +34,7 @@ Displays emotion trends over time.
 - Support Hotlines Access
 Provides emergency and emotional support hotline numbers based on user's selected country.
 
-## Permissions and Data Usage
+## 🔐 Permissions and Data Usage
 
 To provide core functionality, the application request the following permissions:
 
